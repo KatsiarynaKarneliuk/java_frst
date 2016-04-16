@@ -9,3 +9,9 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
+.idea/workspace.xml
+sandbox/src/main/java/ru/stqa/first/sandbox/Point.java
+sandbox/src/main/java/ru/stqa/frst/sandbox/MyFirstProgram.java
+sandbox/src/main/java/ru/stqa/frst/sandbox/Square.java
+sandbox/src/main/java/ru/stqa/frst/sandbox/Rectangle.java
+sandbox/.idea/workspace.xml
