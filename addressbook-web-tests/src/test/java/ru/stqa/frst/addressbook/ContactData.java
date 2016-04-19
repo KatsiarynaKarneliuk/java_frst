@@ -1,6 +1,6 @@
 package ru.stqa.frst.addressbook;
 
-public class AddNewContactData {
+public class ContactData {
   private final String name;
   private final String lastname;
   private final String address;
@@ -8,7 +8,7 @@ public class AddNewContactData {
   private final String homephone;
   private final String mobile;
 
-  public AddNewContactData(String name, String lastname, String address, String email, String homephone, String mobile) {
+  public ContactData(String name, String lastname, String address, String email, String homephone, String mobile) {
     this.name = name;
     this.lastname = lastname;
     this.address = address;
