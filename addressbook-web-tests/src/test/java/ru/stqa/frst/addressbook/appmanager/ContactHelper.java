@@ -7,11 +7,11 @@ import ru.stqa.frst.addressbook.model.ContactData;
 /**
  * Created by user on 20.04.2016.
  */
-public class ContactHelper {
-  FirefoxDriver wd;
+public class ContactHelper extends HelperBase{
 
-  public ContactHelper(FirefoxDriver wd) {
-    this.wd = wd;
+
+  public ContactHelper  (FirefoxDriver wd) {
+    super (wd);
   }
 
   public void returntoHome() {

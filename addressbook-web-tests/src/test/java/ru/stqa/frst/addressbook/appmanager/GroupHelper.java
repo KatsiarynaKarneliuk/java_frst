@@ -7,46 +7,43 @@ import ru.stqa.frst.addressbook.model.GroupData;
 /**
  * Created by user on 19.04.2016.
  */
-public class GroupHelper {
+public class GroupHelper extends HelperBase {
 
-  FirefoxDriver wd;
-
-  public GroupHelper (FirefoxDriver wd ){
-  this.wd=wd;
+  public GroupHelper(FirefoxDriver wd) {
+    super(wd);
   }
 
   public void returnToGroupPage() {
-      wd.findElement(By.linkText("group page")).click();
+    click(By.linkText("group page"));
   }
 
   public void submitGroupCreation() {
-      wd.findElement(By.name("submit")).click();
+    click(By.name("submit"));
   }
 
   public void fillGroupForm(GroupData groupData) {
-      wd.findElement(By.name("group_name")).click();
-      wd.findElement(By.name("group_name")).clear();
-      wd.findElement(By.name("group_name")).sendKeys(groupData.getName());
-      wd.findElement(By.name("group_header")).click();
-      wd.findElement(By.name("group_header")).clear();
-      wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-      wd.findElement(By.name("group_footer")).click();
-      wd.findElement(By.name("group_footer")).clear();
-      wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-      wd.findElement(By.xpath("//div[@id='content']/form")).click();
+
+    type(By.name("group_name"), groupData.getName());
+    click(By.name("group_header"));
+    wd.findElement(By.name("group_header")).clear();
+    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+    click(By.name("group_footer"));
+    wd.findElement(By.name("group_footer")).clear();
+    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    click(By.xpath("//div[@id='content']/form"));
   }
 
   public void initGroupCreation() {
-      wd.findElement(By.name("new")).click();
+    click(By.name("new"));
   }
 
   public void deleteSelectedGroups() {
-      wd.findElement(By.name("delete")).click();
+    click(By.name("delete"));
   }
 
   public void selectGroup() {
-      if (!wd.findElement(By.name("selected[]")).isSelected()) {
-          wd.findElement(By.name("selected[]")).click();
-      }
+    if (!wd.findElement(By.name("selected[]")).isSelected()) {
+      click(By.name("selected[]"));
+    }
   }
 }
