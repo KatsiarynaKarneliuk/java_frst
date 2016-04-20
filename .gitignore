@@ -15,3 +15,4 @@ sandbox/src/main/java/ru/stqa/frst/sandbox/MyFirstProgram.java
 sandbox/src/main/java/ru/stqa/frst/sandbox/Square.java
 sandbox/src/main/java/ru/stqa/frst/sandbox/Rectangle.java
 sandbox/.idea/workspace.xml
+addressbook-web-tests/src/test/java/ru/stqa/frst/addressbook/appmanager/ContactCreationHelper.java

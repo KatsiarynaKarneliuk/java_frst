@@ -12,6 +12,7 @@ public class SessionHelper {
   public SessionHelper(FirefoxDriver wd) {
     this.wd = wd;
   }
+
   public void login(String username, String password) {
     wd.findElement(By.name("pass")).click();
     wd.findElement(By.name("pass")).sendKeys("\\undefined");
