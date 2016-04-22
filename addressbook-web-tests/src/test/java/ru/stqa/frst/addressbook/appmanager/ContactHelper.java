@@ -15,7 +15,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void returntoHome() {
-    wd.findElement(By.xpath("//div/div[4]/div/i/a[2]")).click();
+    wd.findElement(By.linkText("home"));
   }
 
   public void submitAddNewContact() {
@@ -36,7 +36,6 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.name("email")).click();
     wd.findElement(By.name("email")).clear();
     wd.findElement(By.name("email")).sendKeys(addNewContactData.getEmail());
-    wd.findElement(By.name("theform")).click();
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("home")).clear();
     wd.findElement(By.name("home")).sendKeys(addNewContactData.getHomephone());
