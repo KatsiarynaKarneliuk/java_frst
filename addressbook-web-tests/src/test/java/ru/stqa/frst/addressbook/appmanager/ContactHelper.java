@@ -7,22 +7,22 @@ import ru.stqa.frst.addressbook.model.ContactData;
 /**
  * Created by user on 20.04.2016.
  */
-public class ContactHelper extends HelperBase{
+public class ContactHelper extends HelperBase {
 
 
-  public ContactHelper  (FirefoxDriver wd) {
-    super (wd);
+  public ContactHelper(FirefoxDriver wd) {
+    super(wd);
   }
 
   public void returntoHome() {
-   wd.findElement(By.xpath("//div/div[4]/div/i/a[2]")).click();
+    wd.findElement(By.xpath("//div/div[4]/div/i/a[2]")).click();
   }
 
   public void submitAddNewContact() {
-   wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
+    wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  public void fillAddNewContactForm(ContactData addNewContactData) {
+  public void fillContactForm(ContactData addNewContactData) {
     wd.findElement(By.name("firstname")).click();
     wd.findElement(By.name("firstname")).clear();
     wd.findElement(By.name("firstname")).sendKeys(addNewContactData.getName());
@@ -43,5 +43,28 @@ public class ContactHelper extends HelperBase{
     wd.findElement(By.name("mobile")).click();
     wd.findElement(By.name("mobile")).clear();
     wd.findElement(By.name("mobile")).sendKeys(addNewContactData.getMobile());
+  }
+
+  public void selectContact() {
+    click(By.name("selected[]"));
+  }
+
+  public void initContactModification() {
+    click(By.xpath("//tr[@class='odd']/td[8]/a/img"));
+  }
+
+  public void submitContactModification() {
+    click(By.name("update"));
+  }
+
+  public void submitContactDeletion() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void initContactDeletion() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public void openHomePage() {click(By.linkText("home"));
   }
 }
