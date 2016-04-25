@@ -5,8 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.frst.addressbook.model.GroupData;
 
-import static java.awt.SystemColor.text;
-
 /**
  * Created by user on 19.04.2016.
  */
@@ -24,27 +22,17 @@ public class GroupHelper extends HelperBase {
     click(By.name("submit"));
   }
 
-
   public void fillGroupForm(GroupData groupData) {
 
-      if (text != null) {
-        type(By.name("group_name"), groupData.getName());
-      }
-      click(By.name("group_header"));
-      if (text != null) {
-        wd.findElement(By.name("group_header")).clear();
-        wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-      }
-      click(By.name("group_footer"));
-      if (text != null) {
-        wd.findElement(By.name("group_footer")).clear();
-        wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-      }
-
-      click(By.xpath("//div[@id='content']/form"));
-    }
-
-
+    type(By.name("group_name"), groupData.getName());
+    click(By.name("group_header"));
+    wd.findElement(By.name("group_header")).clear();
+    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+    click(By.name("group_footer"));
+    wd.findElement(By.name("group_footer")).clear();
+    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    click(By.xpath("//div[@id='content']/form"));
+  }
 
   public void initGroupCreation() {
     click(By.name("new"));
