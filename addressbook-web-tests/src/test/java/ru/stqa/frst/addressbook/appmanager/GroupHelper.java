@@ -25,21 +25,17 @@ public class GroupHelper extends HelperBase {
   }
 
   public void fillGroupForm(GroupData groupData) {
-    if (text != null) {
-      type(By.name("group_name"), groupData.getName());
-    }
+
+    type(By.name("group_name"), groupData.getName());
     click(By.name("group_header"));
-    if (text != null) {
-      wd.findElement(By.name("group_header")).clear();
-      wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
-    }
+    type(By.name("group_header"), groupData.getHeader());
     click(By.name("group_footer"));
-    if (text != null) {
-      wd.findElement(By.name("group_footer")).clear();
-      wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
-    }
+    type(By.name("group_footer"), groupData.getFooter());
+
     click(By.xpath("//div[@id='content']/form"));
   }
+
+
 
   public void initGroupCreation() {
     click(By.name("new"));

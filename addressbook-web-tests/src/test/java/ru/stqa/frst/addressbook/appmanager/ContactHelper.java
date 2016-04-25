@@ -25,24 +25,24 @@ public class ContactHelper extends HelperBase {
 
   public void fillContactForm(ContactData addNewContactData) {
     wd.findElement(By.name("firstname")).click();
-    wd.findElement(By.name("firstname")).clear();
-    wd.findElement(By.name("firstname")).sendKeys(addNewContactData.getName());
+
+    type(By.name("firstname"), addNewContactData.getName());
     wd.findElement(By.name("lastname")).click();
-    wd.findElement(By.name("lastname")).clear();
-    wd.findElement(By.name("lastname")).sendKeys(addNewContactData.getLastname());
+
+    type(By.name("lastname"), addNewContactData.getLastname());
     wd.findElement(By.name("address")).click();
-    wd.findElement(By.name("address")).clear();
-    wd.findElement(By.name("address")).sendKeys(addNewContactData.getAddress());
+
+    type(By.name("address"), addNewContactData.getAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("email")).click();
-    wd.findElement(By.name("email")).clear();
-    wd.findElement(By.name("email")).sendKeys(addNewContactData.getEmail());
+
+    type(By.name("email"), addNewContactData.getEmail());
     wd.findElement(By.name("home")).click();
-    wd.findElement(By.name("home")).clear();
-    wd.findElement(By.name("home")).sendKeys(addNewContactData.getHomephone());
+
+    type(By.name("home"), addNewContactData.getHomephone());
     wd.findElement(By.name("mobile")).click();
-    wd.findElement(By.name("mobile")).clear();
-    wd.findElement(By.name("mobile")).sendKeys(addNewContactData.getMobile());
+
+    type(By.name("mobile"), addNewContactData.getMobile());
   }
 
   public void selectContact() {
@@ -65,6 +65,7 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
-  public void openHomePage() {click(By.linkText("home"));
+  public void openHomePage() {
+    click(By.linkText("home"));
   }
 }
