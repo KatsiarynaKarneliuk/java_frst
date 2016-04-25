@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import ru.stqa.frst.addressbook.model.GroupData;
 
+import static java.awt.SystemColor.text;
+
 /**
  * Created by user on 19.04.2016.
  */
@@ -23,14 +25,19 @@ public class GroupHelper extends HelperBase {
   }
 
   public void fillGroupForm(GroupData groupData) {
-
-    type(By.name("group_name"), groupData.getName());
+    if (text != null) {
+      type(By.name("group_name"), groupData.getName());
+    }
     click(By.name("group_header"));
-    wd.findElement(By.name("group_header")).clear();
-    wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+    if (text != null) {
+      wd.findElement(By.name("group_header")).clear();
+      wd.findElement(By.name("group_header")).sendKeys(groupData.getHeader());
+    }
     click(By.name("group_footer"));
-    wd.findElement(By.name("group_footer")).clear();
-    wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    if (text != null) {
+      wd.findElement(By.name("group_footer")).clear();
+      wd.findElement(By.name("group_footer")).sendKeys(groupData.getFooter());
+    }
     click(By.xpath("//div[@id='content']/form"));
   }
 
@@ -43,11 +50,14 @@ public class GroupHelper extends HelperBase {
   }
 
   public void selectGroup() {
-      click(By.name("selected[]"));
-    }
-  public void initGroupModification() {click(By.name("edit"));
+    click(By.name("selected[]"));
   }
 
-  public void submitGroupModification(){click(By.name("update"));
+  public void initGroupModification() {
+    click(By.name("edit"));
+  }
+
+  public void submitGroupModification() {
+    click(By.name("update"));
   }
 }

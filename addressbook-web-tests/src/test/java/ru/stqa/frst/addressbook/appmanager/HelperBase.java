@@ -9,10 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * Created by user on 20.04.2016.
  */
 public class HelperBase {
-WebDriver wd;
+  WebDriver wd;
 
   public HelperBase(WebDriver wd) {
-    this.wd=wd;
+    this.wd = wd;
   }
 
   protected void click(By locator) {
@@ -20,15 +20,18 @@ WebDriver wd;
   }
 
   protected void type(By locator, String text) {
-    wd.findElement(locator).click();
-    wd.findElement(locator).clear();
-    wd.findElement(locator).sendKeys(text);
+    click(locator);
+    if (text != null) {
+      wd.findElement(locator).clear();
+      wd.findElement(locator).sendKeys(text);
+    }
   }
-  public boolean isAlertPresent () {
+
+  public boolean isAlertPresent() {
     try {
       wd.switchTo().alert();
       return true;
-    }   catch (NoAlertPresentException e) {
+    } catch (NoAlertPresentException e) {
       return false;
     }
   }
