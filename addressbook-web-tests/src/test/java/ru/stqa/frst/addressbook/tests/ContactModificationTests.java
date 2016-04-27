@@ -9,7 +9,7 @@ import ru.stqa.frst.addressbook.model.ContactData;
 public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification() {
-    app.getContactHelper().openHomePage();
+    app.openHomePage();
     app.getContactHelper().selectContact();
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillContactForm(new ContactData("test1", "test2", "test3", "test1.test2@com", "265-45-89", "852-74-89", null), false);

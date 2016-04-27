@@ -49,6 +49,7 @@ public class ApplicationManager {
   public void stop() {
     wd.quit();
   }
+  public void openHomePage(){navigationHelper.openHomePage();}
 
   public void gotoAddNewContactPage() {
     navigationHelper.gotoAddNewContactPage();
