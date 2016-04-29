@@ -49,14 +49,14 @@ public class ContactHelper extends HelperBase {
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
-    }else{
+    } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
 
     }
   }
 
-   public void selectContact() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[3]/td[1]/input"));
+  public void selectContact() {
+    click(By.name("selected []"));
   }
 
   public void initContactModification() {
@@ -75,5 +75,16 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 
+  public void createContact(ContactData contactData, boolean contact) {
+    fillContactForm(contact);
+    submitAddNewContact();
+    returntoHome();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected []"));
+  }
+
 
 }
+
