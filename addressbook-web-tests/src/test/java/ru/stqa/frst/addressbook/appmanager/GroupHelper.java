@@ -2,10 +2,11 @@ package ru.stqa.frst.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.frst.addressbook.model.GroupData;
 
-import static java.awt.SystemColor.text;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by user on 19.04.2016.
@@ -44,7 +45,9 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroup(int index){wd.findElements(By.name("selected[]")).get(index).click();}
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
+  }
 
 
   public void initGroupModification() {
@@ -63,11 +66,25 @@ public class GroupHelper extends HelperBase {
   }
 
   public boolean isThereAGroup() {
-    return isElementPresent (By.name("selected[]"));
+    return isElementPresent(By.name("selected[]"));
 
   }
 
   public int getGroupCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
-}
+
+  public List<GroupData> getGroupList() {
+    List<GroupData> groups = new ArrayList<GroupData>();
+    List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+    for (WebElement element : elements) {
+      String name = element.getText();
+      GroupData group = new GroupData(name, null, null);
+      groups.add(group);
+    }
+      return groups;
+    }
+
+  }
+
+
