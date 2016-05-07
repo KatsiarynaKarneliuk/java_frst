@@ -14,8 +14,10 @@ public class ContactData {
   public int getId() {
     return id;
   }
+
+
   public ContactData(String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
-    this.id = 0;
+    this.id = Integer.MAX_VALUE;
     this.name = name;
     this.lastname = lastname;
 
@@ -23,28 +25,8 @@ public class ContactData {
     this.email = email;
     this.homephone = homephone;
     this.mobile = mobile;
+
     group = Group;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-
-    ContactData that = (ContactData) o;
-
-    if (id != that.id) return false;
-    if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
-
-  }
-
-  @Override
-  public int hashCode() {
-    int result = id;
-    result = 31 * result + (name != null ? name.hashCode() : 0);
-    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
-    return result;
   }
 
   public ContactData(int id, String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
@@ -60,7 +42,8 @@ public class ContactData {
     group = Group;
   }
 
-
+  public void setId(int max) {
+  }
 
   public String getName() {
     return name;
@@ -99,6 +82,23 @@ public class ContactData {
             '}';
   }
 
-  public void setId(int max) {
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+
+    ContactData that = (ContactData) o;
+
+    if (name != null ? !name.equals(that.name) : that.name != null) return false;
+    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+
+  }
+
+  @Override
+  public int hashCode() {
+    int result = name != null ? name.hashCode() : 0;
+    result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    return result;
   }
 }
