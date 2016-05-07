@@ -1,6 +1,5 @@
 package ru.stqa.frst.addressbook.model;
 
-import com.sun.org.apache.xpath.internal.operations.String;
 
 public class ContactData {
   private final String name;

@@ -1,6 +1,6 @@
 package ru.stqa.frst.addressbook.appmanager;
 
-import com.sun.org.apache.xpath.internal.operations.String;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
