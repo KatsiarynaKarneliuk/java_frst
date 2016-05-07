@@ -2,6 +2,7 @@ package ru.stqa.frst.addressbook.model;
 
 
 public class ContactData {
+  private final String id;
   private final String name;
   private final String lastname;
   private final String address;
@@ -10,9 +11,25 @@ public class ContactData {
   private final String mobile;
   private static String group;
 
+  public String getId() {
+    return id;
+  }
   public ContactData(String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
+    this.id = null;
     this.name = name;
     this.lastname = lastname;
+
+    this.address = address;
+    this.email = email;
+    this.homephone = homephone;
+    this.mobile = mobile;
+    group = Group;
+  }
+  public ContactData(String id, String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
+    this.id = id;
+    this.name = name;
+    this.lastname = lastname;
+
     this.address = address;
     this.email = email;
     this.homephone = homephone;
@@ -57,6 +74,7 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
 
@@ -64,7 +82,8 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
@@ -72,7 +91,8 @@ public class ContactData {
   @Override
   public String toString() {
     return "ContactData{" +
-            "name='" + name + '\'' +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
             ", lastname='" + lastname + '\'' +
             '}';
   }

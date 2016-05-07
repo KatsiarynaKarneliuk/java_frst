@@ -29,26 +29,26 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.xpath("//div[@id='content']/form/input[21]")).click();
   }
 
-  public void fillContactForm(ContactData addNewContactData, boolean creation) {
+  public void fillContactForm(ContactData contactData, boolean creation) {
     wd.findElement(By.name("firstname")).click();
 
-    type(By.name("firstname"), addNewContactData.getName());
+    type(By.name("firstname"), contactData.getName());
     wd.findElement(By.name("lastname")).click();
 
-    type(By.name("lastname"), addNewContactData.getLastname());
+    type(By.name("lastname"), contactData.getLastname());
     wd.findElement(By.name("address")).click();
 
-    type(By.name("address"), addNewContactData.getAddress());
+    type(By.name("address"), contactData.getAddress());
     wd.findElement(By.name("home")).click();
     wd.findElement(By.name("email")).click();
 
-    type(By.name("email"), addNewContactData.getEmail());
+    type(By.name("email"), contactData.getEmail());
     wd.findElement(By.name("home")).click();
 
-    type(By.name("home"), addNewContactData.getHomephone());
+    type(By.name("home"), contactData.getHomephone());
     wd.findElement(By.name("mobile")).click();
 
-    type(By.name("mobile"), addNewContactData.getMobile());
+    type(By.name("mobile"), contactData.getMobile());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
@@ -107,6 +107,7 @@ public class ContactHelper extends HelperBase {
     for (WebElement element : elements) {
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
+      String id = element.findElement(By.tagName("input")).getAttribute("value");
       ContactData contact = new ContactData(firstname, lastname, null, null, null, null, null);
       contacts.add(contact);
     }
