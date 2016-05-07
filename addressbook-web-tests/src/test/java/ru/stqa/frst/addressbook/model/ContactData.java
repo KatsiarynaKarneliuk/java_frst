@@ -1,5 +1,7 @@
 package ru.stqa.frst.addressbook.model;
 
+import com.sun.org.apache.xpath.internal.operations.String;
+
 public class ContactData {
   private final String name;
   private final String lastname;
@@ -18,6 +20,8 @@ public class ContactData {
     this.mobile = mobile;
     group = Group;
   }
+
+
 
   public String getName() {
     return name;
