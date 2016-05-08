@@ -1,7 +1,6 @@
 package ru.stqa.frst.addressbook.tests;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.frst.addressbook.model.GroupData;
 
@@ -15,37 +14,31 @@ import static org.testng.Assert.assertEquals;
  * Created by user on 20.04.2016.
  */
 public class GroupModificationTests extends TestBase {
-@BeforeMethod
-public void ensurePreconditions(){
-  app.getNavigationHelper().gotoGroupPage();
-  if (!app.getGroupHelper().isThereAGroup()) {
-    app.getGroupHelper().createGroup(new GroupData("test1", "test2", null));
-  }
-}
+
   @Test
   public void testGroupModification() {
+    app.getNavigationHelper().gotoGroupPage();
 
+    if (!app.getGroupHelper().isThereAGroup()) {
+      app.getGroupHelper().createGroup(new GroupData("test1", "test2", null));
+    }
     List<GroupData> before = app.getGroupHelper().getGroupList();
-    int index = before.size() - 1;
-    GroupData group = new GroupData(before.get(index).getId(),"test1", "test2", "test3");
-    app.getGroupHelper().modifyGroup(group);
+    app.getGroupHelper().selectGroup(before.size() - 1);
+    app.getGroupHelper().initGroupModification();
+    GroupData group = new GroupData(before.get(before.size() - 1).getId(),"test1", "test2", "test3");
+    app.getGroupHelper().fillGroupForm(group);
+    app.getGroupHelper().submitGroupModification();
+    app.getGroupHelper().returnToGroupPage();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     assertEquals(before.size(), after.size());
 
-    before.remove(index);
+    before.remove(before.size() - 1);
     before.add(group);
 
     Comparator<? super GroupData> byId = (g1,g2) -> Integer.compare(g1.getId(), (g2.getId()));
     before.sort(byId);
     after.sort(byId);
     Assert.assertEquals(before,after);
-  }
-
-public void modifyGroup(GroupData group) {
-    app.getGroupHelper().initGroupModification();
-    app.getGroupHelper().fillGroupForm(group);
-    app.getGroupHelper().submitGroupModification();
-    app.getGroupHelper().returnToGroupPage();
   }
 }
 

@@ -13,21 +13,21 @@ public class ContactCreationTests extends TestBase {
   @Test
   public void testContactCreation() {
     app.openHomePage();
-    List<ContactData> before = app.getContactHelper().getContactList();
-    ContactData contact = new ContactData("test1", "test2", null, "test1.test2@com", "265-45-89", "852-74-89", "test1");
+    List<ContactData>before = app.getContactHelper().getContactList();
     app.getContactHelper().gotoAddNewContactPage();
+    ContactData contact = new ContactData("test1", "test2", null, "test1.test2@com", "265-45-89", "852-74-89","test1");
     app.getContactHelper().fillContactForm(contact, true);
     app.getContactHelper().submitAddNewContact();
     app.getContactHelper().returntoHome();
-    List<ContactData> after = app.getContactHelper().getContactList();
-    Assert.assertEquals(after.size(), before.size() + 1);
+    List<ContactData>after = app.getContactHelper().getContactList();
+    Assert.assertEquals(after.size(),before.size() +1);
 
-    contact.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
+    contact.setId (after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
     before.add(contact);
-    Comparator<? super ContactData> byId = (c1, c2) -> Integer.compare(c1.getId(), c2.getId());
+    Comparator<? super ContactData> byId = (c1, c2)-> Integer.compare(c1.getId(), c2.getId());
     before.sort(byId);
     after.sort(byId);
-    Assert.assertEquals(before, after);
-    Assert.assertEquals(after, before);
+    Assert.assertEquals(before,after);
+    Assert.assertEquals(after,before);
   }
 }

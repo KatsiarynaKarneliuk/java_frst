@@ -7,7 +7,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.frst.addressbook.model.ContactData;
-import ru.stqa.frst.addressbook.model.GroupData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -88,13 +87,6 @@ public class ContactHelper extends HelperBase {
     gotoAddNewContactPage();
     fillContactForm(contactData, creation);
     submitAddNewContact();
-    returntoHome();
-  }
-
-  public void modifyContact(ContactData contact) {
-    initContactModification();
-    fillContactForm(contact, false);
-    submitContactModification();
     returntoHome();
   }
 
