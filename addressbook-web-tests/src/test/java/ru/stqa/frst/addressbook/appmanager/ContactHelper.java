@@ -90,6 +90,13 @@ public class ContactHelper extends HelperBase {
     returntoHome();
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    initContactModification();
+    fillContactForm(contact, false);
+    submitContactModification();
+    returntoHome();
+  }
+
   public boolean isThereAContactData() {
 
     return isElementPresent(
