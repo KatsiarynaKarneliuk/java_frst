@@ -50,23 +50,21 @@ public class ApplicationManager {
   }
   public void openHomePage(){navigationHelper.openHomePage();}
 
-  public void gotoAddNewContactPage() {
-    navigationHelper.gotoAddNewContactPage();
+  public void contactPage() {
+    navigationHelper.contactPage();
   }
 
   public void gotoGroupPage() {
-    navigationHelper.gotoGroupPage();
+    navigationHelper.groupPage();
   }
 
-  public GroupHelper getGroupHelper() {
+  public GroupHelper group() {
     return groupHelper;
   }
 
-
-  public ContactHelper getContactHelper() {
+  public ContactHelper contact() {
     return contactHelper;
   }
-
 
   public NavigationHelper goTo() {
     return navigationHelper;
