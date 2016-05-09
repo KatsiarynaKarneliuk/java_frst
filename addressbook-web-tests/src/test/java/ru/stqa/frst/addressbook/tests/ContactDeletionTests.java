@@ -12,12 +12,13 @@ import java.util.List;
  */
 public class ContactDeletionTests extends TestBase {
   @BeforeMethod
-  public void ensurePreconditions(){
+  public void ensurePreconditions() {
     app.openHomePage();
     if (app.contact().list().size() == 0) {
-      app.contact().create(new ContactData("test1", "test2", null, "test1.test2@com", "265-45-89", "852-74-89", "test1"), true);
+      app.contact().create(new ContactData().withName("test1").withLastname("test2").withAddress(null).withEmail("test1.test2@com").withHomephone("265-45-89").withMobile("852-74-89").withGroup("test1"), true);
     }
   }
+
   @Test
 
   public void testContactDeletion() {

@@ -2,13 +2,13 @@ package ru.stqa.frst.addressbook.model;
 
 
 public class ContactData {
-  private int id;
-  private final String name;
-  private final String lastname;
-  private final String address;
-  private final String email;
-  private final String homephone;
-  private final String mobile;
+  private int id = Integer.MAX_VALUE;
+  private String name;
+  private String lastname;
+  private String address;
+  private String email;
+  private String homephone;
+  private String mobile;
   private static String group;
 
   public int getId() {
@@ -16,34 +16,45 @@ public class ContactData {
   }
 
 
-  public ContactData(String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
-    this.id = Integer.MAX_VALUE;
+  public ContactData withId(int max) {
+    return this;
+  }
+
+  public ContactData withName(String name) {
     this.name = name;
+    return this;
+  }
+
+  public ContactData withLastname(String lastname) {
     this.lastname = lastname;
+    return this;
+  }
 
+  public ContactData withAddress(String address) {
     this.address = address;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
     this.email = email;
+    return this;
+  }
+
+  public ContactData withHomephone(String homephone) {
     this.homephone = homephone;
+    return this;
+  }
+
+  public ContactData withMobile(String mobile) {
     this.mobile = mobile;
-
-    group = Group;
+    return this;
   }
 
-  public ContactData(int id, String name, String lastname, String address, String email, String homephone, String mobile, String Group) {
-    this.id = id;
-    this.name = name;
-
-    this.lastname = lastname;
-
-    this.address = address;
-    this.email = email;
-    this.homephone = homephone;
-    this.mobile = mobile;
-    group = Group;
+  public ContactData withGroup(String group) {
+    ContactData.group = group;
+    return this;
   }
 
-  public void setId(int max) {
-  }
 
   public String getName() {
     return name;

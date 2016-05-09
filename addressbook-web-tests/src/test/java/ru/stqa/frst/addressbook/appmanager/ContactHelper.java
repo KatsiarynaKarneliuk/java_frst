@@ -66,7 +66,6 @@ public class ContactHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-
   public void initContactModification() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
@@ -106,8 +105,7 @@ public class ContactHelper extends HelperBase {
     return isElementPresent(
             By.name("selected[]"));
   }
-
-
+  
   public int getContactCount() {
     return wd.findElements(By.name("selected[]")).size();
   }
@@ -119,8 +117,7 @@ public class ContactHelper extends HelperBase {
       String lastname = element.findElement(By.xpath(".//td[2]")).getText();
       String firstname = element.findElement(By.xpath(".//td[3]")).getText();
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-      ContactData contact = new ContactData(firstname, lastname, null, null, null, null, null);
-      contacts.add(contact);
+      contacts.add(new ContactData().withName(firstname).withLastname(lastname));
     }
     return contacts;
   }

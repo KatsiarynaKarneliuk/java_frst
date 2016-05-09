@@ -1,30 +1,33 @@
 package ru.stqa.frst.addressbook.model;
 
 public class GroupData {
-  private int id;
-  private final String footer;
-  private final String header;
-  private final String name;
+  private int id = Integer.MAX_VALUE;
+  private String footer;
+  private String header;
+  private String name;
 
   public int getId() {
     return id;
   }
 
-
-
-
-  public GroupData(String name, String header, String footer) {
-    this.id = Integer.MAX_VALUE;
-    this.footer = footer;
-    this.header = header;
-    this.name = name;
+  public GroupData withId(int id) {
+    this.id = id;
+    return this;
   }
 
-  public GroupData(int id, String name, String header, String footer) {
-    this.id = id;
+  public GroupData withFooter(String footer) {
     this.footer = footer;
+    return this;
+  }
+
+  public GroupData withHeader(String header) {
     this.header = header;
+    return this;
+  }
+
+  public GroupData withName(String name) {
     this.name = name;
+    return this;
   }
 
   public String getFooter() {
@@ -64,7 +67,5 @@ public class GroupData {
             '}';
   }
 
-  public void setId(int id) {
-    this.id = id;
-  }
+
 }
