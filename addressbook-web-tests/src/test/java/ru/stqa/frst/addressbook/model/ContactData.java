@@ -16,8 +16,8 @@ public class ContactData {
     return id;
   }
 
-  public ContactData withId(int max) {
-    this.id = id;
+  public ContactData withId(int id) {
+    this.id =  id;
     return this;
   }
 
