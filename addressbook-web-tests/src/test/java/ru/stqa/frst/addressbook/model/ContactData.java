@@ -11,12 +11,13 @@ public class ContactData {
   private String mobile;
   private static String group;
 
+
   public int getId() {
     return id;
   }
 
-
   public ContactData withId(int max) {
+    this.id = id;
     return this;
   }
 
@@ -44,6 +45,7 @@ public class ContactData {
     this.homephone = homephone;
     return this;
   }
+
   public ContactData withMobile(String mobile) {
 
     this.mobile = mobile;
@@ -91,6 +93,7 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             '}';
   }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
