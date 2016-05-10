@@ -44,8 +44,8 @@ public class ContactData {
     this.homephone = homephone;
     return this;
   }
-
   public ContactData withMobile(String mobile) {
+
     this.mobile = mobile;
     return this;
   }
@@ -54,7 +54,6 @@ public class ContactData {
     ContactData.group = group;
     return this;
   }
-
 
   public String getName() {
     return name;
@@ -92,8 +91,6 @@ public class ContactData {
             ", lastname='" + lastname + '\'' +
             '}';
   }
-
-
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
@@ -101,15 +98,27 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != that.id) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
-    return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
+    if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+    if (address != null ? !address.equals(that.address) : that.address != null) return false;
+    if (email != null ? !email.equals(that.email) : that.email != null) return false;
+    if (homephone != null ? !homephone.equals(that.homephone) : that.homephone != null) return false;
+    return mobile != null ? mobile.equals(that.mobile) : that.mobile == null;
 
   }
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = id;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+    result = 31 * result + (address != null ? address.hashCode() : 0);
+    result = 31 * result + (email != null ? email.hashCode() : 0);
+    result = 31 * result + (homephone != null ? homephone.hashCode() : 0);
+    result = 31 * result + (mobile != null ? mobile.hashCode() : 0);
     return result;
   }
+
+
 }
