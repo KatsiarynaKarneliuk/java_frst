@@ -31,12 +31,12 @@ public class ContactDetailsTests extends TestBase {
   @Test
   public void testContactDetails() {
     ContactData contact = app.contact().all().iterator().next();
-    ContactData contactInfoFromEditForm = app.contact().infoFromEditForm(contact);
-    app.goTo().openHomePage();
-    ContactData contactInfoFromDetailsForm = app.contact().infoFromDetailsForm(contact);
-    assertThat(contact.getDetails(), equalTo(mergeDetail(contactInfoFromEditForm)));
+    ContactData contactEditForm = app.contact().infoFromEditForm(contact);
 
-  private String mergeDetail(ContactData contact) {
+    ContactData contactViewForm = app.contact().infoFromViewForm(contact);
+    assertThat(contactViewForm, equalTo(mergeDetails(contactEditForm)));
+  }
+  private String mergeDetails(ContactData contact) {
     return Arrays.asList(contact.getName(), contact.getLastname(), contact.getHomephone(), contact.getMobile(), contact.getWorkphone(), contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream()
             .filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
   }
@@ -44,23 +44,9 @@ public class ContactDetailsTests extends TestBase {
   public static String cleaned(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
+
 }
 
-   /* assertThat(contact.getAllNames(), equalTo(mergeAllNames(contactInfoFromEditForm)));
-    assertThat(contact.getDetails(), equalTo(mergeDetails(contactInfoFromEditForm)));
-    assertThat(contact.getEmail(), equalTo(contactInfoFromEditForm.getEmail()));
-    assertThat(contact.getEmail2(), equalTo(contactInfoFromEditForm.getEmail2()));
-    assertThat(contact.getEmail3(), equalTo(contactInfoFromEditForm.getEmail3()));
-  }
-
-  private String mergeAllNames(ContactData contact) {
-    return Arrays.asList(contact.getName(), contact.getLastname()).stream()
-            .filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
-  }
-
-  private String mergeDetails(ContactData contact) {
-    return Arrays.asList(contact.getHomephone(), contact.getMobile(), contact.getWorkphone(), contact.getAddress()).stream()
-            .filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));*/
 
 
 

@@ -173,17 +173,11 @@ public class ContactHelper extends HelperBase {
     wd.findElement(By.cssSelector(String.format("a[href='view.php?id=%s']", id))).click();
   }
 
-  public ContactData infoFromDetailsForm(ContactData contact) {
+  public ContactData infoFromViewForm(ContactData contact) {
     initContactDetalisationById(contact.getId());
-
-    String allNames = wd.findElement(By.xpath("div[@id='content']/b")).getAttribute("value");
-    String details = wd.findElement(By.xpath("div[@id='content']/br")).getAttribute("value");
-    String email = wd.findElement(By.cssSelector(String.format("a[href='mailto@%s']", id))).getAttribute("value");
-    String email2 = wd.findElement(By.cssSelector(String.format("a[href='mailto@%s']", id))).getAttribute("value");
-    String email3 = wd.findElement(By.cssSelector(String.format("a[href='mailto@%s']", id))).getAttribute("value");
-
+    String content = wd.findElement(By.id("content")).getText();
     wd.navigate().back();
-    return new ContactData().withId(contact.getId()).withAllNames(allNames).withDetails(details).withEmail(email).withEmail2(email2).withEmail3(email3);
+    return new ContactData().withContent(content);
   }
 }
 

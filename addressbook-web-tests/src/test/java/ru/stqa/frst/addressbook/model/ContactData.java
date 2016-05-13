@@ -14,25 +14,19 @@ public class ContactData {
   private String work;
   private String allPhones;
   private String allEmails;
-  private String allNames;
-  private String details;
- private String allDetails;
-    private static String group;
+  private String content;
+  private static String group;
 
 
-  public ContactData withAllDetails(String allDetails) {
-    this.allDetails = allDetails;
+
+
+  public ContactData withContent(String content) {
+    this.content = content;
     return this;
   }
 
-  public ContactData withDetails(String details) {
-    this.details = details;
-    return this;
-  }
-  public ContactData withAllNames(String allNames) {
-    this.allNames = allNames;
-    return this;
-  }
+
+
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -100,6 +94,9 @@ public class ContactData {
     ContactData.group = group;
     return this;
   }
+  public String getContent() {
+    return content;
+  }
 
   public int getId() {
     return id;
@@ -152,16 +149,6 @@ public class ContactData {
   public String getAllPhones() {
     return allPhones;
   }
-
-  public String getAllNames() {
-    return allNames;
-  }
-
-  public String getDetails() {
-    return details;
-  }
-
-  public String getAllDetails() {return allDetails;}
 
 
   @Override
