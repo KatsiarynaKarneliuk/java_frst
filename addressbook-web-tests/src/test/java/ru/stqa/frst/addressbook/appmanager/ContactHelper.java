@@ -30,33 +30,17 @@ public class ContactHelper extends HelperBase {
   }
 
   public void fillContactForm(ContactData contactData, boolean creation) {
-
-    wd.findElement(By.name("firstname")).click();
     type(By.name("firstname"), contactData.getName());
-
-    wd.findElement(By.name("lastname")).click();
     type(By.name("lastname"), contactData.getLastname());
-
-    wd.findElement(By.name("address")).click();
     type(By.name("address"), contactData.getAddress());
-
-    wd.findElement(By.name("email")).click();
     type(By.name("email"), contactData.getEmail());
-
-    wd.findElement(By.name("email2")).click();
     type(By.name("email2"), contactData.getEmail2());
-
-    wd.findElement(By.name("email3")).click();
     type(By.name("email3"), contactData.getEmail3());
-
-    wd.findElement(By.name("home")).click();
     type(By.name("home"), contactData.getHomephone());
-
-    wd.findElement(By.name("mobile")).click();
     type(By.name("mobile"), contactData.getMobile());
-
-    wd.findElement(By.name("work")).click();
     type(By.name("work"), contactData.getWorkphone());
+    /*type(By.name("new_group"), contactData.getGroup());*/
+    attach(By.name("photo"), contactData.getPhoto());
 
     if (creation) {
       new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
@@ -178,6 +162,7 @@ public class ContactHelper extends HelperBase {
     String content = wd.findElement(By.id("content")).getText();
     wd.navigate().back();
     return new ContactData().withContent(content);
+
   }
 }
 
