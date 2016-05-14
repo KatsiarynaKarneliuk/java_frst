@@ -34,17 +34,22 @@ public class ContactDetailsTests extends TestBase {
     ContactData contactEditForm = app.contact().infoFromEditForm(contact);
 
     ContactData contactViewForm = app.contact().infoFromViewForm(contact);
-    assertThat(contactViewForm, equalTo(mergeDetails(contactEditForm)));
+
+    assertThat(contact.getContent() , equalTo(mergeContent(contactEditForm)));
   }
-  private String mergeDetails(ContactData contact) {
-    return Arrays.asList(contact.getName(), contact.getLastname(), contact.getHomephone(), contact.getMobile(), contact.getWorkphone(), contact.getAddress(), contact.getEmail(), contact.getEmail2(), contact.getEmail3()).stream()
-            .filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
-  }
+  private String mergeContent(ContactData contact){
+
+    String str = contact.getName() + '\n' + contact.getLastname() + '\n' + contact.getHomephone() + '\n' + contact.getMobile() + '\n'
+              + contact.getWorkphone() + '\n' + contact.getAddress() + '\n' + contact.getEmail() + '\n' + contact.getEmail2() + '\n'
+              + contact.getEmail3().stream().filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
+      return str;
+    }
+
 
   public static String cleaned(String phone) {
     return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
   }
-
+  
 }
 
 
