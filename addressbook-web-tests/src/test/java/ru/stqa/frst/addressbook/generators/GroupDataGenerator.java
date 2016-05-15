@@ -19,7 +19,6 @@ public class GroupDataGenerator {
   @Parameter(names = "-c", description = "Group count")
   public int count;
 
-
   @Parameter(names = "-f", description = "Target file")
   public String file;
 
