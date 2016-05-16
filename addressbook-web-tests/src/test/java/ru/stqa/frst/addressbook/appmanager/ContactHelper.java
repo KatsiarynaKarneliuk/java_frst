@@ -159,7 +159,7 @@ public class ContactHelper extends HelperBase {
 
   public ContactData infoFromViewForm(ContactData contact) {
     initContactDetalisationById(contact.getId());
-    String content = wd.findElement(By.id("content")).getText();
+    String content= wd.findElement(By.id("content")).getText();
     wd.navigate().back();
     return new ContactData().withContent(content);
 

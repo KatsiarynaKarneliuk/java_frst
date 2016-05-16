@@ -1,6 +1,5 @@
 package ru.stqa.frst.addressbook.tests;
 
-import com.sun.jndi.cosnaming.IiopUrl;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.frst.addressbook.model.ContactData;
@@ -8,10 +7,8 @@ import ru.stqa.frst.addressbook.model.ContactData;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
-import static com.sun.xml.internal.ws.encoding.policy.FastInfosetFeatureConfigurator.enabled;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static ru.stqa.frst.addressbook.tests.TestBase.app;
 
 /**
  * Created by user on 12.05.2016.
@@ -32,25 +29,25 @@ public class ContactDetailsTests extends TestBase {
   public void testContactDetails() {
     ContactData contact = app.contact().all().iterator().next();
     ContactData contactEditForm = app.contact().infoFromEditForm(contact);
-
     ContactData contactViewForm = app.contact().infoFromViewForm(contact);
-
-    assertThat(contact.getContent() , equalTo(mergeContent(contactEditForm)));
+    assertThat(contactViewForm.getContent(), equalTo(mergeContentEdit(contactEditForm)));
   }
-  private String mergeContent(ContactData contact){
-
-    String str = contact.getName() + '\n' + contact.getLastname() + '\n' + contact.getHomephone() + '\n' + contact.getMobile() + '\n'
-              + contact.getWorkphone() + '\n' + contact.getAddress() + '\n' + contact.getEmail() + '\n' + contact.getEmail2() + '\n'
-              + contact.getEmail3().stream().filter((s) -> !s.equals("")).map(ContactPhoneTests::cleaned).collect(Collectors.joining("\n"));
-      return str;
-    }
 
 
-  public static String cleaned(String phone) {
-    return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
+  private String mergeContentEdit(ContactData contact) {
+    return Arrays.asList((contact.getName() + " " + contact.getLastname()), contact.getAddress() + '\n' + '\n' +
+                    ("H:" + " " + contact.getHomephone()), ("M:" + " " + contact.getMobile()),
+            ("W:" + " " + contact.getWorkphone()) + '\n' + '\n'
+                    + contact.getEmail() + " (" + contact.getEmail().replaceAll(contact.getEmail()
+                    .split("@")[0] + "@", "www.") + ")", contact.getEmail2(),
+            contact.getEmail3() + " (" + contact.getEmail3().replaceAll(contact.getEmail3().split("@")[0] + "@", "www.")
+                    + ")").stream().filter((s) -> !s.equals("")).collect(Collectors.joining("\n"));
   }
-  
+
 }
+
+
+
 
 
 
