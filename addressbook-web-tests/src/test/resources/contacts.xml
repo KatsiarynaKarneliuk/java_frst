@@ -1,0 +1,35 @@
+<list>
+  <contact>
+    <name>Иван 0</name>
+    <lastname>Иванов 0</lastname>
+    <address>Петербург 0</address>
+    <email>test1.test2@com 0</email>
+    <email2>test1.test5@com 0</email2>
+    <email3>test1.test10@com 0</email3>
+    <homephone>2654585 0</homephone>
+    <mobile>8527485 0</mobile>
+    <work>1234575 0</work>
+  </contact>
+  <contact>
+    <name>Иван 1</name>
+    <lastname>Иванов 1</lastname>
+    <address>Петербург 1</address>
+    <email>test1.test2@com 1</email>
+    <email2>test1.test5@com 1</email2>
+    <email3>test1.test10@com 1</email3>
+    <homephone>2654585 1</homephone>
+    <mobile>8527485 1</mobile>
+    <work>1234575 1</work>
+  </contact>
+  <contact>
+    <name>Иван 2</name>
+    <lastname>Иванов 2</lastname>
+    <address>Петербург 2</address>
+    <email>test1.test2@com 2</email>
+    <email2>test1.test5@com 2</email2>
+    <email3>test1.test10@com 2</email3>
+    <homephone>2654585 2</homephone>
+    <mobile>8527485 2</mobile>
+    <work>1234575 2</work>
+  </contact>
+</list>

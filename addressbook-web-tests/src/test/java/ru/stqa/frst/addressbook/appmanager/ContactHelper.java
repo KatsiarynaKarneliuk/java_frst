@@ -39,11 +39,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("home"), contactData.getHomephone());
     type(By.name("mobile"), contactData.getMobile());
     type(By.name("work"), contactData.getWorkphone());
-    /*type(By.name("new_group"), contactData.getGroup());*/
     attach(By.name("photo"), contactData.getPhoto());
 
+
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
+      if (contactData.getGroup() != null) {
+        new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(ContactData.getGroup());
+      }
     } else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
 
