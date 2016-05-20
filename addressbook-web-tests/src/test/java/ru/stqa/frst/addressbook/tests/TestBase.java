@@ -17,10 +17,9 @@ import java.util.Arrays;
  * Created by user on 18.04.2016.
  */
 public class TestBase {
- Logger logger = LoggerFactory.getLogger(TestBase.class);
-
   protected static final ApplicationManager app
           = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+ Logger logger = LoggerFactory.getLogger(TestBase.class);
 
   @BeforeSuite
   public void setUp() throws Exception {
