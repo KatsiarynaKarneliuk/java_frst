@@ -31,13 +31,13 @@ public class ContactData {
   @Column(name="email")
   @Type(type= "text")
   private String email;
-  @Expose
+   @Expose
   @Column(name="email2")
   @Type(type= "text")
   private String email2;
   @Expose
   @Column(name="email3")
-  @Type(type= "text")
+ @Type(type= "text")
   private String email3;
   @Expose
   @Column(name="home")
@@ -51,19 +51,20 @@ public class ContactData {
   @Column(name="work")
   @Type(type= "text")
   private String work;
-  @Expose
   @Transient
   private String allPhones;
-  @Expose
   @Transient
   private String allEmails;
   @Transient
   private String content;
-  @Column(name="photo")
-  @Type(type= "text")
+  @Transient
+ // @Column(name="photo")
+ // @Type(type= "text")
   private String photo;
   @Transient
+
   private  String group;
+
 
   public File getPhoto() {
     return new File (photo);
@@ -119,14 +120,14 @@ public class ContactData {
     return this;
   }
 
-  public ContactData withEmail2(String email2) {
-    this.email2 = email2;
+ public ContactData withEmail2(String email2) {
+  this.email2 = email2;
     return this;
   }
 
   public ContactData withEmail3(String email3) {
     this.email3 = email3;
-    return this;
+   return this;
   }
 
   public ContactData withHomephone(String homephone) {
@@ -174,12 +175,10 @@ public class ContactData {
   }
 
   public String getEmail2() {
-    return email2;
-  }
+   return email2;}
 
   public String getEmail3() {
-    return email3;
-  }
+   return email3;}
 
   public String getWorkphone() {
     return work;
@@ -207,6 +206,15 @@ public class ContactData {
 
 
   @Override
+  public String toString() {
+    return "ContactData{" +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
+            ", lastname='" + lastname + '\'' +
+            '}';
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
@@ -226,16 +234,4 @@ public class ContactData {
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
   }
-
-
-  @Override
-  public String toString() {
-    return "ContactData{" +
-            "id='" + id + '\'' +
-            ", name='" + name + '\'' +
-            ", lastname='" + lastname + '\'' +
-            '}';
-  }
-
-
 }
