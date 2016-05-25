@@ -75,7 +75,7 @@ public class ContactDataGenerator {
     for (int i = 0; i < count; i++) {
       contacts.add(new ContactData().withName(String.format("Иван %s", i)).withLastname(String.format("Иванов %s", i))
               .withAddress(String.format("Петербург %s", i)).withEmail(String.format("test1.test2@com %s", i))
-              .withEmail2(String.format("test1.test5@com %s", i)).withEmail3(String.format("test1.test10@com %s", i))
+             .withEmail2(String.format("test1.test5@com %s", i)).withEmail3(String.format("test1.test10@com %s", i))
               .withHomephone(String.format("2654585 %s", i)).withMobile(String.format("8527485 %s", i))
               .withWorkphone(String.format("1234575 %s", i)));
     }

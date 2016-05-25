@@ -20,7 +20,7 @@ public class ContactModificationTests extends TestBase {
   public void ensurePreconditions() {
     if (app.db().contacts().size() == 0) {
       app.openHomePage();
-      app.contact().create(new ContactData().withName("test1").withLastname("test2").withAddress(null).withEmail("test1.test2@com").withHomephone("265-45-89").withMobile("852-74-89").withGroup("test1"), true);
+      app.contact().create(new ContactData().withName("Иван").withLastname("Иванов").withAddress("Москва").withEmail("test1.test2@com").withHomephone("265-45-89").withMobile("852-74-89")/*.withGroup("test1")*/, true);
     }
   }
 
@@ -28,13 +28,16 @@ public class ContactModificationTests extends TestBase {
   public void testContactModification() {
     Contacts before = app.db().contacts();
     ContactData modifiedContact = before.iterator().next();
-    ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("test1").withLastname("test2").withAddress(null).withEmail("test1.test2@com").withHomephone("265-45-89").withMobile("852-74-89").withGroup(null);
+    ContactData contact = new ContactData().withId(modifiedContact.getId()).withName("Сидор").withLastname("Сидоров").withAddress("Самара").withEmail("test1.test2@com").withHomephone("265-45-89").withMobile("852-74-89")/*.withGroup(null)*/;
     app.contact().modify(contact);
     assertThat(app.contact().count(),equalTo (before.size()));
     Contacts after = app.db().contacts();
 
     assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
+    verifyContactpListInUI();
   }
+
+
 }
 
 
