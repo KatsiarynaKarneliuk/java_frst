@@ -17,7 +17,6 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 
-
 /**
  * Created by user on 19.04.2016.
  */
