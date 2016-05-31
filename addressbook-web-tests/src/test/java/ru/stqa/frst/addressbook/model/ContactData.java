@@ -8,6 +8,9 @@ import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.io.File;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name="addressbook")
 @XStreamAlias("contact")
@@ -15,41 +18,41 @@ public class ContactData {
 
   @XStreamOmitField
   @Id
-  @Column(name="id")
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
-  @Column(name="firstname")
+  @Column(name = "firstname")
   private String name;
   @Expose
-  @Column(name="lastname")
+  @Column(name = "lastname")
   private String lastname;
   @Expose
-  @Column(name="address")
-  @Type(type= "text")
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
   @Expose
-  @Column(name="email")
-  @Type(type= "text")
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
-   @Expose
-  @Column(name="email2")
-  @Type(type= "text")
+  @Expose
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
   @Expose
-  @Column(name="email3")
- @Type(type= "text")
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
   @Expose
-  @Column(name="home")
-  @Type(type= "text")
+  @Column(name = "home")
+  @Type(type = "text")
   private String homephone;
   @Expose
-  @Column(name="mobile")
-  @Type(type= "text")
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobile;
   @Expose
-  @Column(name="work")
-  @Type(type= "text")
+  @Column(name = "work")
+  @Type(type = "text")
   private String work;
   @Transient
   private String allPhones;
@@ -58,31 +61,31 @@ public class ContactData {
   @Transient
   private String content;
   @Transient
- // @Column(name="photo")
- // @Type(type= "text")
+  // @Column(name="photo")
+  // @Type(type= "text")
   private String photo;
-  @Transient
 
-  private  String group;
 
+  @ManyToMany
+  @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
+          inverseJoinColumns = @JoinColumn(name = "group_id"))
+  private Set<GroupData> groups = new HashSet<GroupData>();
+  public Groups getGroups() {
+    return new Groups(groups);
+  }
 
   public File getPhoto() {
     return new File (photo);
   }
-
   public ContactData withPhoto(File photo) {
     this.photo = photo.getPath();
     return this;
   }
 
-
   public ContactData withContent(String content) {
     this.content = content;
     return this;
   }
-
-
-
 
   public ContactData withAllPhones(String allPhones) {
     this.allPhones = allPhones;
@@ -93,7 +96,6 @@ public class ContactData {
     this.allEmails = allEmails;
     return this;
   }
-
 
   public ContactData withId(int id) {
     this.id = id;
@@ -145,11 +147,6 @@ public class ContactData {
     this.work = work;
     return this;
   }
-
-  public ContactData withGroup(String group) {
-    this.group = group;
-    return this;
-  }
   public String getContent() {
     return content;
   }
@@ -192,10 +189,6 @@ public class ContactData {
     return mobile;
   }
 
-  public String getGroup() {
-    return group;
-  }
-
   public String getAllEmails() {
     return allEmails;
   }
@@ -233,5 +226,10 @@ public class ContactData {
     result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
     return result;
+  }
+
+  public ContactData inGroup(GroupData group) {
+    groups.add(group);
+    return this;
   }
 }
