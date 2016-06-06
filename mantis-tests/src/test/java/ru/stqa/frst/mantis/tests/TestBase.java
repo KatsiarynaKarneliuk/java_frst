@@ -16,7 +16,7 @@ public class TestBase {
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
     @BeforeSuite
-    public void setUp() throws IOException {
+    public void setUp() throws IOException, Exception {
         app.init();
         app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
 
