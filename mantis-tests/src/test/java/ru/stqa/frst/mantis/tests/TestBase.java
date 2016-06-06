@@ -12,21 +12,21 @@ import java.io.IOException;
  * Created by user on 18.04.2016.
  */
 public class TestBase {
-    protected static final ApplicationManager app
-            = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
+  protected static final ApplicationManager app
+          = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
-    @BeforeSuite
-    public void setUp() throws IOException, Exception {
-        app.init();
-        app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
+  @BeforeSuite
+  public void setUp() throws IOException, Exception {
+    app.init();
+    app.ftp().upload(new File("src/test/resources/config_inc.php"), "config_inc.php", "config_inc.php.bak");
 
-    }
+  }
 
-    @AfterSuite(alwaysRun = true)
-    public void tearDown() throws IOException {
-        app.ftp().restore("config_inc.php.bak", "config_inc.php");
-        app.stop();
-    }
+  @AfterSuite(alwaysRun = true)
+  public void tearDown() throws IOException {
+    app.ftp().restore("config_inc.php.bak", "config_inc.php");
+    app.stop();
+  }
 
 
 }

@@ -1,6 +1,5 @@
 package ru.stqa.frst.mantis.tests;
 
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 import ru.stqa.frst.mantis.appmanager.HttpSession;
 

@@ -23,6 +23,7 @@ public class ApplicationManager {
   private MailHelper mailHelper;
   private UserHelper userHelper;
   private DbHelper dbHelper;
+  private JamesHelper jamesHelper;
 
   public ApplicationManager(String browser) {
     this.browser = browser;
@@ -64,15 +65,6 @@ public class ApplicationManager {
     return registrationHelper;
   }
 
-
-  public UserHelper user() {
-    if (userHelper == null) {
-      userHelper = new UserHelper(this);
-    }
-    return userHelper;
-  }
-
-
   public WebDriver getDriver() {
     if (wd == null) {
       if (browser.equals(BrowserType.FIREFOX)) {
@@ -97,9 +89,23 @@ public class ApplicationManager {
 
   public DbHelper db() {
     if (dbHelper == null) {
-      dbHelper = new DbHelper(this);
+      dbHelper = new DbHelper();
     }
     return db();
+  }
+
+  public UserHelper user() {
+    if (userHelper == null) {
+      userHelper = new UserHelper(this);
+    }
+    return userHelper;
+  }
+
+  public JamesHelper james() {
+    if (jamesHelper == null) {
+      jamesHelper = new JamesHelper(this);
+    }
+    return jamesHelper;
   }
 }
 

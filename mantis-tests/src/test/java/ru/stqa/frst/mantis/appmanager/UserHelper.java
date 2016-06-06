@@ -6,20 +6,11 @@ import ru.stqa.frst.mantis.model.UserData;
 /**
  * Created by user on 02.06.2016.
  */
-public class UsersHelper extends HelperBase {
+public class UserHelper extends HelperBase {
 
-  public Object modifiedUser;
 
-  public UsersHelper(ApplicationManager app) {
+  public UserHelper(ApplicationManager app) {
     super(app);
-  }
-
-  public void initManageUsers() {
-    wd.findElement(By.cssSelector("a[href='mantisbt-1.2.19/manage_user_page.php']")).click();
-  }
-
-  public void initResetPassword() {
-    click(By.cssSelector("input[value = 'Reset Password']"));
   }
 
 
@@ -32,9 +23,19 @@ public class UsersHelper extends HelperBase {
 
   public void setNewPassword(String confirmationLink, String new_password) {
     wd.get(confirmationLink);
-    type(By.name("password"),new_password);
+    type(By.name("password"), new_password);
     type(By.name("password_confirm"), new_password);
     click(By.cssSelector("input[value = 'Update User']"));
   }
+
+  public void logout() {
+    click(By.linkText("Logout"));
   }
 
+  public void ResetPassword(UserData user) {
+    click(By.linkText("Manage"));
+    click(By.linkText("Manage Users"));
+    click(By.linkText(user.getName()));
+    click(By.cssSelector("input[value='Reset Password']"));
+  }
+}

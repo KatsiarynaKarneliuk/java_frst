@@ -1,17 +1,11 @@
 package ru.stqa.frst.mantis.appmanager;
 
 
-
-
-
-
-
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
-import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.client.LaxRedirectStrategy;
@@ -21,8 +15,6 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.sun.jmx.snmp.ThreadContext.contains;
 
 /**
  * Created by user on 29.05.2016.
@@ -35,6 +27,7 @@ public class HttpSession {
     this.app = app;
     httpclient = HttpClients.custom().setRedirectStrategy(new LaxRedirectStrategy()).build();
   }
+
   public boolean login(String username, String password) throws IOException {
     HttpPost post = new HttpPost(app.getProperty("web.baseUrl") + "/login.php");
     List<NameValuePair> params = new ArrayList<>();
@@ -55,10 +48,11 @@ public class HttpSession {
       response.close();
     }
   }
+
   public boolean isLoggedInAs(String username) throws IOException {
     HttpGet get = new HttpGet(app.getProperty("web.baseUrl") + "/login.php");
     CloseableHttpResponse response = httpclient.execute(get);
-    String body =geTextFrom(response);
+    String body = geTextFrom(response);
     return body.contains(String.format("<span class=\"italic\">%s</span>", username));
   }
 }

@@ -5,8 +5,6 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import ru.stqa.frst.addressbook.model.UserData;
-import ru.stqa.frst.addressbook.model.Users;
 import ru.stqa.frst.mantis.model.UserData;
 import ru.stqa.frst.mantis.model.Users;
 
@@ -31,7 +29,7 @@ public class DbHelper {
   public Users users() {
     Session session = sessionFactory.openSession();
     session.beginTransaction();
-    List<UserData> result = session.createQuery("from UserData").list();
+    List<UserData> result = session.createQuery("from UserData where username !=admin").list();
     session.getTransaction().commit();
     session.close();
     return new Users(result);

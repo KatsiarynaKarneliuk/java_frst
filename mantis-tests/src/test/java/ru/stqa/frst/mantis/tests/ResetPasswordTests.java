@@ -1,16 +1,13 @@
 package ru.stqa.frst.mantis.tests;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.MetadataSources;
-import org.hibernate.boot.registry.StandardServiceRegistry;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.lanwen.verbalregex.VerbalExpression;
+import ru.stqa.frst.mantis.appmanager.HttpSession;
 import ru.stqa.frst.mantis.model.MailMessage;
-import
+import ru.stqa.frst.mantis.model.UserData;
+
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.List;
@@ -22,21 +19,6 @@ import static org.testng.Assert.assertTrue;
  */
 public class ResetPasswordTests extends TestBase {
 
-  @BeforeClass
-  public void setUp() throws Exception {
-    // A SessionFactory is set up once for an application!
-    final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-            .configure() // configures settings from hibernate.cfg.xml
-            .build();
-    try {
-      SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-    } catch (Exception e) {
-      e.printStackTrace();
-      // The registry would be destroyed by the SessionFactory, but we had trouble building the SessionFactory
-      // so destroy it manually.
-      StandardServiceRegistryBuilder.destroy(registry);
-    }
-  }
   @BeforeMethod
   public void startMailServer() {
     app.mail().start();
@@ -44,21 +26,24 @@ public class ResetPasswordTests extends TestBase {
 
   @Test
   public void testResertPassword() throws IOException, MessagingException {
-    String adminLogin = "administrator";
+    /*String adminLogin = "administrator";
     String adminPassword = "root";
-    String user = "user1";
-    String password = "123";
-    String email = "user1@localhost.localdomain";
-    String new_password = "1234";
+    String email = "email";*/
 
-    app.UsersHelper().login(adminLogin, adminPassword);
-    app.UsersHelper().initManageUsers();
-    app.UsersHelper().modifiedUser = app.db().users().stream().filter((u)->!u.getName().equals("Administrator")).iterrator().next();
-    app.UsersHelper().initResetPassword();
+    String new_password = "new_password";
+    UserData userWithNewPassword = app.db().users().stream().filter((u) -> !u.getName()
+            .equals("Administrator")).iterator().next();
+    app.user().login("administrator", "root");
+    assertTrue(app.newSession().login("administrator", "root"));
+    app.user().ResetPassword(userWithNewPassword);
+    app.user().logout();
     List<MailMessage> mailMessages = app.mail().waitForMail(2, 10000);
-    String confirmationLink = findConfirmationLink(mailMessages, email);
-    app.UsersHelper().setNewPassword(confirmationLink,new_password);
-    assertTrue(app.newSession().login(user, new_password));
+    String confirmationLink = findConfirmationLink(mailMessages, "email");
+    app.user().setNewPassword(confirmationLink, new_password);
+    HttpSession session = app.newSession();
+    assertTrue(session.login(userWithNewPassword.getName(), new_password));
+    assertTrue(session.isLoggedInAs(userWithNewPassword.getUsername()));
+    app.user().logout();
   }
 
   private String findConfirmationLink(List<MailMessage> mailMesages, String email) {
