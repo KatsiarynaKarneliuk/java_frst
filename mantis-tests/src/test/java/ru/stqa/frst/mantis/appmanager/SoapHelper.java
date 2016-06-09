@@ -32,6 +32,19 @@ public class SoapHelper {
             .collect(Collectors.toSet());
   }
 
+  public Issue getIssue(int issueId) throws MalformedURLException, org.hibernate.service.spi.ServiceException, RemoteException
+          , javax.xml.rpc.ServiceException {
+    MantisConnectPortType mc = getMantisConnect();
+    IssueData issueData = mc.mc_issue_get(app.getProperty("web.adminLogin"), app.getProperty("web.adminPassword")
+            , BigInteger.valueOf(issueId));;
+
+    return new Issue().withId(issueData.getId().intValue())
+            .withResolution(issueData.getResolution())
+            .withSummary(issueData.getSummary()).withDescription(issueData.getDescription())
+            .withProject(new Project().withId(issueData.getProject().getId().intValue())
+                    .withName(issueData.getProject().getName()));
+  }
+
   private MantisConnectPortType getMantisConnect() throws ServiceException, MalformedURLException {
     return new MantisConnectLocator()
             .getMantisConnectPort(new URL(app.getProperty("web.baseUrl") + "api/soap/mantisconnect.php"));
@@ -52,4 +65,6 @@ public class SoapHelper {
             .withDescription(createdIssueData.getDescription()).withProject(new Project().withId(createdIssueData.getProject().getId().intValue())
                     .withName(createdIssueData.getProject().getName()));
   }
+
+
 }

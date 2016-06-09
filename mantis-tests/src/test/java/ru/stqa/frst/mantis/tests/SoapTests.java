@@ -6,7 +6,6 @@ package ru.stqa.frst.mantis.tests;
 
         import javax.xml.rpc.ServiceException;
         import java.net.MalformedURLException;
-        import java.net.URL;
         import java.rmi.RemoteException;
         import java.util.Set;
 
@@ -32,5 +31,8 @@ public class SoapTests extends TestBase{
     Issue created = app.soap().addIssue(issue);
     assertEquals(issue.getSummary(), created.getSummary());
   }
+  @Test
+  public void testWithIssue()throws RemoteException, MalformedURLException, ServiceException{
+    skipIfNotFixed(	0000002);
+  }
 }
-
