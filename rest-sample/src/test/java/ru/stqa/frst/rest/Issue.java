@@ -4,18 +4,18 @@ package ru.stqa.frst.rest;
  * Created by user on 10.06.2016.
  */
 public class Issue {
-  private int Id;
+  private int id;
   private String subject;
   private String description;
 
 
   public int getId() {
-    return Id;
+    return id;
   }
 
   public Issue withId(int id) {
-    Id = id;
-  return this;
+    this.id = id;
+    return this;
   }
 
   public String getSubject() {
@@ -43,7 +43,7 @@ public class Issue {
 
     Issue issue = (Issue) o;
 
-    if (Id != issue.Id) return false;
+    if (id != issue.id) return false;
     if (subject != null ? !subject.equals(issue.subject) : issue.subject != null) return false;
     return description != null ? description.equals(issue.description) : issue.description == null;
 
@@ -51,7 +51,7 @@ public class Issue {
 
   @Override
   public int hashCode() {
-    int result = Id;
+    int result = id;
     result = 31 * result + (subject != null ? subject.hashCode() : 0);
     result = 31 * result + (description != null ? description.hashCode() : 0);
     return result;
