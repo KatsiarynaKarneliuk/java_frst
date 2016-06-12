@@ -22,9 +22,7 @@ import static org.testng.AssertJUnit.assertEquals;
  */
 public class RestAssuredTests {
   @BeforeClass
-  public void init(){
-    RestAssured.authentication = RestAssured.basic("LSGjeU4yP1X493ud1hNniA==", "");
-  }
+
   @Test
   public void testCreateIssue() throws IOException {
     Set<Issue> oldIssues = getIssues();
