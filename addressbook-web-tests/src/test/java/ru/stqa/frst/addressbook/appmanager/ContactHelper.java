@@ -179,8 +179,8 @@ public class ContactHelper extends HelperBase {
 
   }
 
-  public void selectGroup(GroupData relatedGroup) {
-    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(relatedGroup.getName());
+  public void selectGroup(GroupData freeGroup) {
+    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(freeGroup.getName());
   }
 
   public void submitAddToGroup() {
@@ -190,7 +190,7 @@ public class ContactHelper extends HelperBase {
   public void submitDelitedFromGroup() {
     wd.findElement(By.name("remove")).click();
   }
+  }
 
 
-}
 
