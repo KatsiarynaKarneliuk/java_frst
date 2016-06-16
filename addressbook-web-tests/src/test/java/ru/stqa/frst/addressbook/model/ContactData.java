@@ -16,6 +16,7 @@ import java.util.Set;
 @XStreamAlias("contact")
 public class ContactData {
 
+
   @XStreamOmitField
   @Id
   @Column(name = "id")
@@ -64,7 +65,6 @@ public class ContactData {
   // @Column(name="photo")
   // @Type(type= "text")
   private String photo;
-
 
   @ManyToMany
   @JoinTable(name = "address_in_groups", joinColumns = @JoinColumn(name = "id"),
@@ -233,3 +233,8 @@ public class ContactData {
     return this;
   }
 }
+
+
+
+
+

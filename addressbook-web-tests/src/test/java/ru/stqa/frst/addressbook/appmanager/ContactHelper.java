@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import ru.stqa.frst.addressbook.model.ContactData;
 import ru.stqa.frst.addressbook.model.Contacts;
+import ru.stqa.frst.addressbook.model.GroupData;
 
 import java.util.List;
 
@@ -43,8 +44,8 @@ public class ContactHelper extends HelperBase {
 
 
     if (creation) {
-      if (contactData.getGroups().size() >0) {
-       Assert.assertTrue(contactData.getGroups().size()==1);
+      if (contactData.getGroups().size() > 0) {
+        Assert.assertTrue(contactData.getGroups().size() == 1);
         new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroups().iterator().next().getName());
       }
     } else {
@@ -102,6 +103,15 @@ public class ContactHelper extends HelperBase {
     returntoHome();
   }
 
+  public boolean isContactInGroup(ContactData newContact, GroupData freeGroup) {
+    for (GroupData group : newContact.getGroups()) {
+      if (group.getName().equals(freeGroup.getName())) {
+        System.out.println("Contact, id" + newContact.getId() + "is added to group -" + freeGroup.getName());
+      }
+    }
+    return true;
+  }
+
   public boolean isThereAContactData() {
 
     return isElementPresent(
@@ -119,6 +129,7 @@ public class ContactHelper extends HelperBase {
       return new Contacts(contactCache);
     }
     contactCache = new Contacts();
+
     List<WebElement> rows = wd.findElements(By.name("entry"));
     for (WebElement row : rows) {
       List<WebElement> cells = row.findElements(By.tagName("td"));
@@ -162,11 +173,24 @@ public class ContactHelper extends HelperBase {
 
   public ContactData infoFromViewForm(ContactData contact) {
     initContactDetalisationById(contact.getId());
-    String content= wd.findElement(By.id("content")).getText();
+    String content = wd.findElement(By.id("content")).getText();
     wd.navigate().back();
     return new ContactData().withContent(content);
 
   }
-}
 
+  public void selectGroup(GroupData relatedGroup) {
+    new Select(wd.findElement(By.xpath("//select[@name='to_group']"))).selectByVisibleText(relatedGroup.getName());
+  }
+
+  public void submitAddToGroup() {
+    wd.findElement(By.name("add")).click();
+  }
+
+  public void submitDelitedFromGroup() {
+    wd.findElement(By.name("remove")).click();
+  }
+
+
+}
 

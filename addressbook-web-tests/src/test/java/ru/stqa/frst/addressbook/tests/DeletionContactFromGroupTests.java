@@ -27,15 +27,16 @@ public class DeletionContactFromGroupTests extends TestBase {
 
   @Test
 
-  public void testContactDeletion() {
+  public void testDeletionContactFromGroup() {
     app.openHomePage();
     Contacts before = app.db().contacts();
-    ContactData deletedContact = before.iterator().next();
-    app.contact().delete(deletedContact);
+    ContactData deletedContactFromGroup = before.iterator().next();
+    app.contact().delete(deletedContactFromGroup);
+    app.contact().submitDelitedFromGroup();
+    app.openHomePage();
     assertThat(app.contact().count(), equalTo(before.size() - 1));
     Contacts after = app.db().contacts();
-
-    assertThat(after, equalTo(before.without(deletedContact)));
+    assertThat(after, equalTo(before.without(deletedContactFromGroup)));
   }
 }
 
